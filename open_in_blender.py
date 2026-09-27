@@ -44,8 +44,16 @@ def group_for(name):
         key="04 | Deep tiled vault soffit"
     elif name.startswith(("PLINTH_","BASE_","THRESHOLD_","CROWN_")):
         key="05 | Plinth, threshold + cornice"
+    elif name.startswith("SHRINE_"):
+        key="06 | Shrine facade + entrance"
+    elif name.startswith(("DOME_","MINARET_")):
+        key="07 | Dome + twin minarets"
+    elif name.startswith("RIWAQ_"):
+        key="08 | Flanking courtyard arcades"
+    elif name.startswith(("COURTYARD_","LANTERN_")):
+        key="09 | Paving, planting + lamps"
     else:
-        key="06 | Structural cores + spandrels"
+        key="10 | Structural cores + spandrels"
     if key not in groups:
         coll=bpy.data.collections.new(key)
         root.children.link(coll)
@@ -65,6 +73,7 @@ colors={
     "Tile_Deep_Blue_Glaze":(0.018,0.045,0.19),"Tile_Lapis_Glaze":(0.07,0.20,0.61),
     "Tile_Turquoise_Glaze":(0.015,0.39,0.43),"Tile_Teal_Glaze":(0.012,0.22,0.25),
     "Tile_Ivory_Glaze":(0.84,0.72,0.53),"Tile_Gold_Glaze":(0.78,0.43,0.10),
+    "Foliage_Evergreen":(0.055,0.19,0.085),"Wood_Dark":(0.25,0.12,0.065),
     "Stone_Carved":(0.62,0.56,0.45),"Structure_Core":(0.48,0.39,0.29),
 }
 for name,rgb in colors.items():
@@ -88,8 +97,8 @@ for screen in bpy.data.screens:
     for area in screen.areas:
         if area.type=='VIEW_3D':
             space=area.spaces.active
-            space.region_3d.view_location=(0.0,-0.5,5.15)
-            space.region_3d.view_distance=17.0
+            space.region_3d.view_location=(0.0,7.0,5.20)
+            space.region_3d.view_distance=23.0
             space.region_3d.view_rotation=mathutils.Euler((math.radians(90),0,0),'XYZ').to_quaternion()
             space.region_3d.view_perspective='ORTHO'
             space.shading.type='SOLID'
